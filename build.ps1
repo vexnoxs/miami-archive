@@ -41,9 +41,10 @@ function Build-Card($item, [string]$icon, [int]$hue) {
     $desc = if ($item.desc) { "<p class=""card-desc"">$($item.desc)</p>" } else { "" }
     $thumb = if ($item.image) { "<img class=""card-thumb-img"" src=""$($item.image)"" alt=""$($item.name)"" />" }
              else { "<i class=""fa-solid $icon""></i>" }
+    $thumbClass = if ($item.image) { " card-thumb--img" } else { "" }
     return @"
 <div class="card" style="--t: $hue">
-    <a class="card-thumb" href="$link" target="_blank" rel="noopener">$thumb</a>
+    <a class="card-thumb$thumbClass" href="$link" target="_blank" rel="noopener">$thumb</a>
     <div class="card-body">
         <h3><a href="$link" target="_blank" rel="noopener">$($item.name)</a></h3>
         $desc

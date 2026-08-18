@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to MiamiArchive">
+    <title>MIAMI - MiamiArchive</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e1526'/%3E%3Cpath d='M16 20c0-4 3-7 7-7h18c4 0 7 3 7 7v24c0 4-3 7-7 7H23c-4 0-7-3-7-7V20z' fill='%233b82f6'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='24' font-weight='800' fill='%23eef2f8' text-anchor='middle'>M</text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body data-page="home">
+
+    <!-- Sfondo video -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="miami-bg.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+    <div class="accent-light"></div>
+    <div class="grain"></div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">M<span>IAMI</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a><a href="clients.html">faul</a><a href="packs.html">Resource Packs</a><a href="shaders.html">Shaders</a><a href="profiles.html">Profiles</a><a href="mods.html">Mods</a><a href="news.html">News</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1 class="main-title">MIA<em>MI</em></h1>
+        <p class="subtitle">Welcome to MiamiArchive</p>
+
+        <!-- SOCIAL LINKS -->
+        <div class="social-links">
+            <a href="https://guns.lol/4it" target="_blank" title="guns.lol/4it"><i
+                    class="fa-solid fa-dollar-sign"></i></a>
+            <a href="https://guns.lol/v.ex" target="_blank" title="guns.lol/v.ex"><i class="fa-solid fa-star"></i></a>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <div class="line"></div>
+            <span>We offer</span>
+            <div class="line"></div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-users"></i></div>
+                <h3>Community Attiva</h3>
+                <p>Unisciti a una community di persone appassionate, pronta ad accoglierti e a condividere esperienze.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Veloce e Leggero</h3>
+                <p>Prestazioni ottimizzate per un'esperienza fluida e senza interruzioni su qualsiasi dispositivo.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Sicurezza</h3>
+                <p>La tua privacy è la nostra priorità: dati protetti e transazioni sicure in ogni momento.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-desktop"></i></div>
+                <h3>Multi-Piattaforma</h3>
+                <p>Disponibile su tutti i dispositivi e schermi — desktop, tablet e mobile, senza compromessi.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <h3>Aggiornamenti Costanti</h3>
+                <p>Nuove funzionalità e miglioramenti vengono rilasciati regolarmente per offrirti sempre il meglio.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box"><i class="fa-solid fa-headset"></i></div>
+                <h3>Supporto 24/7</h3>
+                <p>Il nostro team è sempre disponibile per aiutarti. Contattaci in qualsiasi momento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="foot-logo">M<span>IAMI</span></span>
+        <span>© 2026 MiamiArchive</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

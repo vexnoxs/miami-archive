@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gli ultimi aggiornamenti dalla community di Miami.">
+    <title>News - MIAMI</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e1526'/%3E%3Cpath d='M16 20c0-4 3-7 7-7h18c4 0 7 3 7 7v24c0 4-3 7-7 7H23c-4 0-7-3-7-7V20z' fill='%233b82f6'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='24' font-weight='800' fill='%23eef2f8' text-anchor='middle'>M</text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body data-page="news">
+
+    <!-- Sfondo video -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="miami-bg.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+    <div class="accent-light"></div>
+    <div class="grain"></div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">M<span>IAMI</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a><a href="clients.html">faul</a><a href="packs.html">Resource Packs</a><a href="shaders.html">Shaders</a><a href="profiles.html">Profiles</a><a href="mods.html">Mods</a><a href="news.html" class="active">News</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="category-section">
+    <div class="page-header">
+        <h2>News</h2>
+        <p>Gli ultimi aggiornamenti dalla community</p>
+    </div>
+
+    <div class="news-grid">
+<div class="news-card">
+    <div class="news-date"><i class="fa-solid fa-calendar-days"></i> 19 ago 2026</div>
+    <h3>MiamiArchive è online!</h3>
+    <p>Il sito è ufficialmente online: client, pack, shader, profili e mod in un unico posto.</p>
+</div>
+<div class="news-card">
+    <div class="news-date"><i class="fa-solid fa-calendar-days"></i> 18 ago 2026</div>
+    <h3>miami archive 1.8.9 aggiornato</h3>
+    <p>Nuova versione del client con fix alle prestazioni e configurazione migliorata.</p>
+</div>
+
+    </div>
+</section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="foot-logo">M<span>IAMI</span></span>
+        <span>© 2026 MiamiArchive</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

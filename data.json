@@ -14,28 +14,13 @@
       "hue": 210,
       "items": [
         {
-          "name": "miami archive",
+          "name": "Faul Client",
           "version": "1.8.9",
           "platform": "minecraft",
           "status": "working",
           "link": "https://brazy.qzz.io/",
+          "image": "assets/faul-client.png",
           "desc": "Il client principale della community, sempre aggiornato."
-        },
-        {
-          "name": "miami lite",
-          "version": "1.8.9",
-          "platform": "minecraft",
-          "status": "soon",
-          "link": "#",
-          "desc": "Versione leggera e ottimizzata per prestazioni massime."
-        },
-        {
-          "name": "miami duel",
-          "version": "1.8.9",
-          "platform": "minecraft",
-          "status": "working",
-          "link": "#",
-          "desc": "Configurato apposta per duelli e UHC."
         }
       ]
     },

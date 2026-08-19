@@ -77,7 +77,7 @@ $navHome = Build-Nav "index.html"
 $html = $template.Replace("{{SLUG}}", "home")
 $html = $html.Replace("{{NAV}}", $navHome)
 $html = $html.Replace("{{DESC}}", $data.site.tagline)
-$html = $html.Replace("{{TITLE}}", "$($data.site.name) - MiamiArchive")
+$html = $html.Replace("{{TITLE}}", "miami://archive")
 $html = $html.Replace("{{CONTENT}}", $homePartial)
 Write-Utf8 (Join-Path $root "index.html") $html
 Write-Host "generato index.html"

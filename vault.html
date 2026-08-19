@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>miami//vault</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23140e26'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='26' font-weight='800' fill='%23c9ccd8' text-anchor='middle'>M</text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body[data-page="vault"] {
+            display: block;
+            overflow-y: auto;
+        }
+
+        .vault {
+            position: relative;
+            z-index: 4;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: clamp(6rem, 12vh, 8rem) 1.5rem 4rem;
+        }
+
+        .vault-card {
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55), 0 0 30px rgba(124, 58, 237, 0.12);
+            text-align: center;
+        }
+
+        .vault-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 1.4rem;
+        }
+
+        .vault-eyebrow .jp {
+            font-size: 0.9rem;
+            color: var(--purple-bright);
+            letter-spacing: 4px;
+        }
+
+        .vault-card input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: rgba(10, 7, 19, 0.7);
+            color: var(--hi);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            outline: none;
+            margin-bottom: 0.8rem;
+            transition: border-color .25s var(--ease);
+        }
+
+        .vault-card input:focus {
+            border-color: var(--border-strong);
+        }
+
+        .vault-btn {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            background: var(--purple-dim);
+            color: var(--purple-bright);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all .25s var(--ease);
+        }
+
+        .vault-btn:hover {
+            background: rgba(139, 92, 246, 0.22);
+            border-color: var(--border-strong);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.25);
+        }
+
+        .vault-btn.small {
+            width: auto;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.62rem;
+        }
+
+        .vault-btn.danger {
+            border-color: rgba(240, 135, 154, 0.35);
+            background: var(--bad-dim);
+            color: var(--bad);
+        }
+
+        .vault-err {
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 1px;
+            color: var(--bad);
+            min-height: 1em;
+            margin-top: 0.6rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .vault-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.6rem;
+        }
+
+        .vault-head h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .vault-head .jp {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+        }
+
+        .vault-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .vault-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.1rem 1.2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .vault-panel h2 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .vault-panel h2 .jp {
+            font-size: 0.8rem;
+            color: var(--purple-bright);
+        }
+
+        .v-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 0.7rem;
+        }
+
+        .v-field label {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--lo);
+        }
+
+        .v-field input,
+        .v-field select,
+        .v-field textarea {
+            width: 100%;
+            padding: 0.5rem 0.7rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: rgba(10, 7, 19, 0.7);
+            color: var(--hi);
+            font-size: 0.82rem;
+            outline: none;
+            transition: border-color .25s var(--ease);
+        }
+
+        .v-field textarea {
+            resize: vertical;
+            min-height: 54px;
+            font-family: var(--font-sans);
+        }
+
+        .v-field input:focus,
+        .v-field select:focus,
+        .v-field textarea:focus {
+            border-color: var(--border-strong);
+        }
+
+        .v-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .v-row .v-field {
+            flex: 1;
+        }
+
+        .v-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 380px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .v-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.55rem 0.7rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: rgba(10, 7, 19, 0.45);
+        }
+
+        .v-item .v-thumb {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: hsl(var(--t) 75% 76%);
+            background: linear-gradient(135deg, hsl(var(--t) 55% 16%), hsl(calc(var(--t) + 45) 60% 10%));
+        }
+
+        .v-item .v-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
+        }
+
+        .v-item .v-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .v-item .v-info b {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--hi);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .v-item .v-info small {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--lo);
+            letter-spacing: 1px;
+        }
+
+        .v-item .v-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .v-out {
+            width: 100%;
+            min-height: 220px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            line-height: 1.5;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: rgba(10, 7, 19, 0.7);
+            color: var(--silver);
+            padding: 0.8rem;
+            resize: vertical;
+            outline: none;
+        }
+
+        .v-note {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            color: var(--lo-2);
+            margin-top: 0.7rem;
+        }
+
+        .v-hue-preview {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            color: var(--silver);
+        }
+
+        .v-hue-preview .sw {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        @media (max-width: 900px) {
+            .vault-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="vault">
+
+    <div class="camo" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <main class="vault">
+
+        <!-- GATE -->
+        <section id="gate" class="vault-card">
+            <p class="vault-eyebrow">MIAMI VAULT <span class="jp" lang="ja">管理</span></p>
+            <input type="password" id="gateKey" placeholder="ACCESS KEY" autocomplete="off">
+            <button class="vault-btn" id="gateBtn">UNLOCK</button>
+            <p class="vault-err" id="gateErr"></p>
+        </section>
+
+        <!-- ADMIN -->
+        <section id="admin" class="hidden">
+
+            <div class="vault-head">
+                <h1><span class="chrome-text">Vault</span> <span class="jp chrome-text" lang="ja">保管庫</span></h1>
+                <button class="vault-btn small" id="logoutBtn"><i class="fa-solid fa-lock"></i> LOCK</button>
+            </div>
+
+            <div class="vault-grid">
+
+                <!-- CATEGORIA -->
+                <div class="vault-panel">
+                    <h2><i class="fa-solid fa-folder-open"></i> CATEGORY <span class="jp" lang="ja">カテゴリー</span></h2>
+                    <div class="v-field">
+                        <label for="catSelect">SELECT CATEGORY</label>
+                        <select id="catSelect"></select>
+                    </div>
+                    <div class="v-row">
+                        <div class="v-field">
+                            <label for="catTitle">TITLE</label>
+                            <input id="catTitle" type="text">
+                        </div>
+                        <div class="v-field">
+                            <label for="catSlug">SLUG (FILE)</label>
+                            <input id="catSlug" type="text" readonly>
+                        </div>
+                    </div>
+                    <div class="v-field">
+                        <label for="catSubtitle">SUBTITLE</label>
+                        <input id="catSubtitle" type="text">
+                    </div>
+                    <div class="v-field">
+                        <label for="catDesc">DESCRIPTION (META)</label>
+                        <input id="catDesc" type="text">
+                    </div>
+                    <div class="v-row">
+                        <div class="v-field">
+                            <label for="catIcon">ICON (FONT AWESOME)</label>
+                            <select id="catIcon"></select>
+                        </div>
+                        <div class="v-field">
+                            <label for="catHue">HUE 0-360</label>
+                            <input id="catHue" type="number" min="0" max="360" value="210">
+                        </div>
+                    </div>
+                    <div class="v-hue-preview" style="margin-bottom:.8rem">
+                        <span class="sw" id="hueSw"></span> <span id="hueVal">210</span> <span class="jp" lang="ja">色</span>
+                    </div>
+                    <button class="vault-btn" id="catSave"><i class="fa-solid fa-floppy-disk"></i> SAVE CATEGORY</button>
+                </div>
+
+                <!-- ITEMS -->
+                <div class="vault-panel">
+                    <h2><i class="fa-solid fa-boxes-stacked"></i> ITEMS <span class="jp" lang="ja">項目</span></h2>
+                    <div class="v-list" id="itemList"></div>
+                    <div class="v-row">
+                        <div class="v-field">
+                            <label for="itName">NAME</label>
+                            <input id="itName" type="text">
+                        </div>
+                        <div class="v-field">
+                            <label for="itVersion">VERSION (TAG)</label>
+                            <input id="itVersion" type="text">
+                        </div>
+                    </div>
+                    <div class="v-row">
+                        <div class="v-field">
+                            <label for="itPlatform">PLATFORM (TAG)</label>
+                            <input id="itPlatform" type="text">
+                        </div>
+                        <div class="v-field">
+                            <label for="itStatus">STATUS</label>
+                            <select id="itStatus">
+                                <option value="working">working</option>
+                                <option value="soon">soon</option>
+                                <option value="outdated">outdated</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="v-field">
+                        <label for="itLink">LINK</label>
+                        <input id="itLink" type="text">
+                    </div>
+                    <div class="v-field">
+                        <label for="itImage">THUMBNAIL (IMAGE PATH, OPTIONAL)</label>
+                        <input id="itImage" type="text" placeholder="assets/example.png">
+                    </div>
+                    <div class="v-field">
+                        <label for="itDesc">DESCRIPTION</label>
+                        <textarea id="itDesc"></textarea>
+                    </div>
+                    <div class="v-row">
+                        <button class="vault-btn" id="itAdd"><i class="fa-solid fa-plus"></i> ADD / UPDATE</button>
+                        <button class="vault-btn danger small" id="itCancel" style="margin-left:auto">CANCEL</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="vault-grid">
+
+                <!-- NEWS -->
+                <div class="vault-panel">
+                    <h2><i class="fa-solid fa-newspaper"></i> NEWS <span class="jp" lang="ja">日誌</span></h2>
+                    <div class="v-list" id="newsList"></div>
+                    <div class="v-row">
+                        <div class="v-field">
+                            <label for="nwDate">DATE</label>
+                            <input id="nwDate" type="text" placeholder="19 ago 2026">
+                        </div>
+                        <div class="v-field">
+                            <label for="nwTitle">TITLE</label>
+                            <input id="nwTitle" type="text">
+                        </div>
+                    </div>
+                    <div class="v-field">
+                        <label for="nwText">TEXT</label>
+                        <textarea id="nwText"></textarea>
+                    </div>
+                    <button class="vault-btn" id="nwAdd"><i class="fa-solid fa-plus"></i> ADD / UPDATE NEWS</button>
+                </div>
+
+                <!-- EXPORT -->
+                <div class="vault-panel">
+                    <h2><i class="fa-solid fa-download"></i> EXPORT <span class="jp" lang="ja">出力</span></h2>
+                    <textarea class="v-out" id="vOut" readonly></textarea>
+                    <div class="v-row" style="margin-top:.8rem">
+                        <button class="vault-btn" id="dlBtn"><i class="fa-solid fa-floppy-disk"></i> DOWNLOAD data.json</button>
+                        <button class="vault-btn small" id="cpBtn"><i class="fa-solid fa-copy"></i> COPY</button>
+                    </div>
+                    <p class="v-note">Sostituisci <b>data.json</b> nel progetto e poi esegui <b>build.ps1</b> per rigenerare tutte le pagine. Le modifiche al JSON non toccano il sito finche' non rebuildi.</p>
+                    <p class="v-note" id="loadState">LOADING data.json ...</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        /* ===== VAULT =====
+           Accesso: password locale (gate client-side, protezione di basso profilo).
+           Cambiare password: sostituire HASH con sha256 della nuova chiave.
+           HASH = sha256("miami2026") */
+        var HASH = "b628eb63c7ea31d3492c4260bb784eb6a35eabdde02c83040053589015621085";
+        var state = null;
+        var editingItem = null;
+        var editingNews = null;
+
+        var ICONS = ["fa-user", "fa-boxes-stacked", "fa-wand-magic-sparkles", "fa-sliders", "fa-puzzle-piece",
+            "fa-newspaper", "fa-palette", "fa-sun", "fa-dice", "fa-user-gear", "fa-gamepad", "fa-bolt",
+            "fa-shield-halved", "fa-database", "fa-folder-open", "fa-star", "fa-fire", "fa-cube",
+            "fa-download", "fa-eye", "fa-video", "fa-music", "fa-image", "fa-tag", "fa-link"];
+
+        function $(id) { return document.getElementById(id); }
+
+        function sha256(str) {
+            return crypto.subtle.digest("SHA-256", new TextEncoder().encode(str)).then(function (buf) {
+                return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+            });
+        }
+
+        function openGate() {
+            $("gate").classList.remove("hidden");
+            $("admin").classList.add("hidden");
+        }
+
+        function openAdmin() {
+            $("gate").classList.add("hidden");
+            $("admin").classList.remove("hidden");
+            renderCatSelect();
+            renderIcons();
+            renderItems();
+            renderNews();
+            updateOut();
+        }
+
+        $("gateBtn").addEventListener("click", function () {
+            var val = $("gateKey").value.trim();
+            if (!val) { $("gateErr").textContent = "KEY REQUIRED"; return; }
+            sha256(val).then(function (h) {
+                if (h === HASH) {
+                    sessionStorage.setItem("miami-vault", "1");
+                    $("gateErr").textContent = "";
+                    loadData();
+                } else {
+                    $("gateErr").textContent = "ACCESS DENIED";
+                }
+            });
+        });
+
+        $("gateKey").addEventListener("keydown", function (e) {
+            if (e.key === "Enter") { $("gateBtn").click(); }
+        });
+
+        $("logoutBtn").addEventListener("click", function () {
+            sessionStorage.removeItem("miami-vault");
+            openGate();
+        });
+
+        /* ---- dati ---- */
+        function loadData() {
+            fetch("data.json").then(function (r) {
+                if (!r.ok) { throw new Error("http " + r.status); }
+                return r.json();
+            }).then(function (json) {
+                state = json;
+                $("loadState").textContent = "data.json loaded";
+                openAdmin();
+            }).catch(function () {
+                $("loadState").textContent = "fetch fallito: incolla il JSON qui sotto e ricarica.";
+                openAdmin();
+                state = { site: { name: "MIAMI", tagline: "" }, nav: [], pages: {}, news: [] };
+            });
+        }
+
+        /* ---- category ---- */
+        function catKeys() {
+            return Object.keys(state.pages);
+        }
+
+        function renderCatSelect() {
+            var sel = $("catSelect");
+            sel.innerHTML = "";
+            catKeys().forEach(function (k) {
+                var o = document.createElement("option");
+                o.value = k;
+                o.textContent = k.toUpperCase();
+                sel.appendChild(o);
+            });
+            loadCat();
+        }
+
+        function loadCat() {
+            var k = $("catSelect").value;
+            var p = state.pages[k];
+            if (!p) { return; }
+            $("catTitle").value = p.title || "";
+            $("catSlug").value = p.slug || "";
+            $("catSubtitle").value = p.subtitle || "";
+            $("catDesc").value = p.desc || "";
+            $("catIcon").value = p.icon || "fa-dice";
+            $("catHue").value = p.hue || 210;
+            updateHue();
+            editingItem = null;
+            renderItems();
+        }
+
+        function updateHue() {
+            var h = $("catHue").value || 0;
+            $("hueSw").style.background = "hsl(" + h + " 65% 45%)";
+            $("hueVal").textContent = h;
+        }
+
+        $("catSelect").addEventListener("change", loadCat);
+        $("catHue").addEventListener("input", updateHue);
+
+        function renderIcons() {
+            var sel = $("catIcon");
+            sel.innerHTML = "";
+            ICONS.forEach(function (ic) {
+                var o = document.createElement("option");
+                o.value = ic;
+                o.textContent = ic;
+                sel.appendChild(o);
+            });
+        }
+
+        $("catSave").addEventListener("click", function () {
+            var k = $("catSelect").value;
+            var p = state.pages[k];
+            p.title = $("catTitle").value.trim() || p.title;
+            p.subtitle = $("catSubtitle").value.trim();
+            p.desc = $("catDesc").value.trim();
+            p.icon = $("catIcon").value;
+            p.hue = Math.max(0, Math.min(360, parseInt($("catHue").value) || 210));
+            renderItems();
+            updateOut();
+        });
+
+        /* ---- items ---- */
+        function curPage() {
+            return state.pages[$("catSelect").value];
+        }
+
+        function renderItems() {
+            var list = $("itemList");
+            list.innerHTML = "";
+            var p = curPage();
+            if (!p || !p.items) { return; }
+            p.items.forEach(function (it, i) {
+                var div = document.createElement("div");
+                div.className = "v-item";
+                div.style.setProperty("--t", p.hue || 210);
+                var thumb = it.image
+                    ? '<span class="v-thumb"><img src="' + it.image + '" alt=""></span>'
+                    : '<span class="v-thumb"><i class="fa-solid ' + (p.icon || "fa-dice") + '"></i></span>';
+                div.innerHTML = thumb +
+                    '<div class="v-info"><b>' + (it.name || "?") + '</b><small>' +
+                    (it.version || "") + ' · ' + (it.status || "") + '</small></div>' +
+                    '<div class="v-actions">' +
+                    '<button class="vault-btn small" data-edit="' + i + '"><i class="fa-solid fa-pen"></i></button>' +
+                    '<button class="vault-btn small danger" data-del="' + i + '"><i class="fa-solid fa-trash"></i></button>' +
+                    '</div>';
+                list.appendChild(div);
+            });
+            list.querySelectorAll("[data-edit]").forEach(function (b) {
+                b.addEventListener("click", function () { editItem(parseInt(b.dataset.edit)); });
+            });
+            list.querySelectorAll("[data-del]").forEach(function (b) {
+                b.addEventListener("click", function () { delItem(parseInt(b.dataset.del)); });
+            });
+        }
+
+        function editItem(i) {
+            var it = curPage().items[i];
+            editingItem = i;
+            $("itName").value = it.name || "";
+            $("itVersion").value = it.version || "";
+            $("itPlatform").value = it.platform || "";
+            $("itStatus").value = it.status || "working";
+            $("itLink").value = it.link || "";
+            $("itImage").value = it.image || "";
+            $("itDesc").value = it.desc || "";
+        }
+
+        function delItem(i) {
+            curPage().items.splice(i, 1);
+            if (editingItem === i) { editingItem = null; clearItemForm(); }
+            renderItems();
+            updateOut();
+        }
+
+        function clearItemForm() {
+            ["itName", "itVersion", "itPlatform", "itLink", "itImage", "itDesc"].forEach(function (id) { $(id).value = ""; });
+            $("itStatus").value = "working";
+        }
+
+        $("itAdd").addEventListener("click", function () {
+            var p = curPage();
+            if (!p.items) { p.items = []; }
+            var it = {
+                name: $("itName").value.trim() || "unnamed",
+                version: $("itVersion").value.trim(),
+                platform: $("itPlatform").value.trim() || "minecraft",
+                status: $("itStatus").value,
+                link: $("itLink").value.trim() || "#",
+                desc: $("itDesc").value.trim()
+            };
+            if ($("itImage").value.trim()) { it.image = $("itImage").value.trim(); }
+            if (editingItem !== null) { p.items[editingItem] = it; } else { p.items.push(it); }
+            editingItem = null;
+            clearItemForm();
+            renderItems();
+            updateOut();
+        });
+
+        $("itCancel").addEventListener("click", function () {
+            editingItem = null;
+            clearItemForm();
+        });
+
+        /* ---- news ---- */
+        function renderNews() {
+            var list = $("newsList");
+            list.innerHTML = "";
+            state.news.forEach(function (n, i) {
+                var div = document.createElement("div");
+                div.className = "v-item";
+                div.innerHTML =
+                    '<div class="v-info"><b>' + (n.title || "?") + '</b><small>' + (n.date || "") + '</small></div>' +
+                    '<div class="v-actions">' +
+                    '<button class="vault-btn small" data-edit="' + i + '"><i class="fa-solid fa-pen"></i></button>' +
+                    '<button class="vault-btn small danger" data-del="' + i + '"><i class="fa-solid fa-trash"></i></button>' +
+                    '</div>';
+                list.appendChild(div);
+            });
+            list.querySelectorAll("[data-edit]").forEach(function (b) {
+                b.addEventListener("click", function () { editNews(parseInt(b.dataset.edit)); });
+            });
+            list.querySelectorAll("[data-del]").forEach(function (b) {
+                b.addEventListener("click", function () { delNews(parseInt(b.dataset.del)); });
+            });
+        }
+
+        function editNews(i) {
+            var n = state.news[i];
+            editingNews = i;
+            $("nwDate").value = n.date || "";
+            $("nwTitle").value = n.title || "";
+            $("nwText").value = n.text || "";
+        }
+
+        function delNews(i) {
+            state.news.splice(i, 1);
+            if (editingNews === i) { editingNews = null; }
+            renderNews();
+            updateOut();
+        }
+
+        $("nwAdd").addEventListener("click", function () {
+            var n = {
+                date: $("nwDate").value.trim() || "—",
+                title: $("nwTitle").value.trim() || "untitled",
+                text: $("nwText").value.trim()
+            };
+            if (editingNews !== null) { state.news[editingNews] = n; } else { state.news.push(n); }
+            editingNews = null;
+            $("nwDate").value = ""; $("nwTitle").value = ""; $("nwText").value = "";
+            renderNews();
+            updateOut();
+        });
+
+        /* ---- export ---- */
+        function updateOut() {
+            if (!state) { return; }
+            $("vOut").value = JSON.stringify(state, null, 2);
+        }
+
+        $("dlBtn").addEventListener("click", function () {
+            var blob = new Blob([$("vOut").value], { type: "application/json" });
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "data.json";
+            a.click();
+            URL.revokeObjectURL(a.href);
+        });
+
+        $("cpBtn").addEventListener("click", function () {
+            navigator.clipboard.writeText($("vOut").value).then(function () {
+                $("cpBtn").innerHTML = '<i class="fa-solid fa-check"></i> COPIED';
+                setTimeout(function () { $("cpBtn").innerHTML = '<i class="fa-solid fa-copy"></i> COPY'; }, 1500);
+            });
+        });
+
+        /* ---- boot ---- */
+        if (sessionStorage.getItem("miami-vault") === "1") {
+            loadData();
+        } else {
+            openGate();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+{
+  "site": {
+    "name": "MIAMI",
+    "tagline": "Welcome to MiamiArchive"
+  },
+  "nav": [
+    { "file": "index.html", "label": "Home" },
+    { "file": "clients.html", "label": "Clients" },
+    { "file": "packs.html", "label": "Resource Packs" },
+    { "file": "shaders.html", "label": "Shaders" },
+    { "file": "profiles.html", "label": "Profiles" },
+    { "file": "mods.html", "label": "Mods" },
+    { "file": "news.html", "label": "News" }
+  ],
+  "pages": {
+    "clients": {
+      "slug": "clients",
+      "file": "clients.html",
+      "title": "Clients",
+      "subtitle": "Preserved client builds, indexed and verified",
+      "desc": "I client configurati dalla community di Miami.",
+      "icon": "fa-dice",
+      "hue": 210,
+      "items": [
+        {
+          "name": "Faul Client",
+          "version": "1.8.9",
+          "platform": "minecraft",
+          "status": "working",
+          "link": "https://brazy.qzz.io/",
+          "image": "assets/faul-client.png",
+          "desc": "Il client principale della community, sempre aggiornato."
+        }
+      ]
+    },
+    "packs": {
+      "slug": "packs",
+      "file": "packs.html",
+      "title": "Resource Packs",
+      "subtitle": "Le texture e i pack consigliati",
+      "desc": "Resource pack consigliati dalla community di Miami.",
+      "icon": "fa-palette",
+      "hue": 320,
+      "items": [
+        {
+          "name": "miami vanilla",
+          "version": "1.8-1.21",
+          "platform": "minecraft",
+          "status": "working",
+          "link": "#",
+          "desc": "Texture vanilla riviste, pulite e leggere."
+        },
+        {
+          "name": "miami pack",
+          "version": "1.8-1.21",
+          "platform": "minecraft",
+          "status": "soon",
+          "link": "#",
+          "desc": "Pack completo con visual migliorate, in lavorazione."
+        }
+      ]
+    },
+    "shaders": {
+      "slug": "shaders",
+      "file": "shaders.html",
+      "title": "Shaders",
+      "subtitle": "Gli shader per un look incredibile",
+      "desc": "Gli shader consigliati per un look incredibile.",
+      "icon": "fa-sun",
+      "hue": 40,
+      "items": [
+        {
+          "name": "miami shader",
+          "version": "1.21",
+          "platform": "minecraft",
+          "status": "soon",
+          "link": "#",
+          "desc": "Luci, ombre e colori ottimizzati per ogni setup."
+        },
+        {
+          "name": "miami low shader",
+          "version": "1.21",
+          "platform": "minecraft",
+          "status": "working",
+          "link": "#",
+          "desc": "Stesso look, prestazioni alte anche su PC modesti."
+        }
+      ]
+    },
+    "profiles": {
+      "slug": "profiles",
+      "file": "profiles.html",
+      "title": "Profiles",
+      "subtitle": "I profili pronti all'uso",
+      "desc": "I profili pronti all'uso della community.",
+      "icon": "fa-user-gear",
+      "hue": 150,
+      "items": [
+        {
+          "name": "miami profile",
+          "version": "1.8.9",
+          "platform": "minecraft",
+          "status": "soon",
+          "link": "#",
+          "desc": "Profilo completo, configurato e testato."
+        }
+      ]
+    },
+    "mods": {
+      "slug": "mods",
+      "file": "mods.html",
+      "title": "Mods",
+      "subtitle": "Le mod consigliate",
+      "desc": "Le mod consigliate dalla community di Miami.",
+      "icon": "fa-puzzle-piece",
+      "hue": 100,
+      "items": [
+        {
+          "name": "miami mod",
+          "version": "1.8-1.21",
+          "platform": "minecraft",
+          "status": "soon",
+          "link": "#",
+          "desc": "Mod multiversione, presto disponibile."
+        }
+      ]
+    }
+  },
+  "news": [
+    {
+      "date": "19 ago 2026",
+      "title": "MiamiArchive è online!",
+      "text": "Il sito è ufficialmente online: client, pack, shader, profili e mod in un unico posto."
+    },
+    {
+      "date": "18 ago 2026",
+      "title": "miami archive 1.8.9 aggiornato",
+      "text": "Nuova versione del client con fix alle prestazioni e configurazione migliorata."
+    }
+  ]
+}
